@@ -10,38 +10,43 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Alegreya" rel="stylesheet">
   <link rel="shortcut icon" href="">
   <link rel="stylesheet" href="./style.css">
 
   <script>
-    $(document).ready( function(){     
-      $.ajaxSetup({ cache: false });
-      $("#btn").on("click", function(){
-        $.getJSON("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(a) {
+     getQ = function() {
+      $.getJSON("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(a) {
           $("#quote-text").html(a[0].content);
           $("#quote-author").html("\~"+a[0].title);  
         });
+    }
+
+    $(document).ready( function(){ 
+      $.ajaxSetup({ cache: false });
+      getQ();
+      $("#btn").on("click", function(){
+        getQ(); 
       });
-        $("#twitter").on("click", function(){
-          var quote = $("#quote-text").text();
-          var quoteAuthor = $("#quote-author").text();
-        window.open('https://twitter.com/intent/tweet?text='+quote+" "+ quoteAuthor)
+
+      $("#twitter").on("click", function(){
+        var quote = $("#quote-text").text();
+        var quoteAuthor = $("#quote-author").text();
+      window.open('https://twitter.com/intent/tweet?text='+quote+" "+ quoteAuthor)
       });  
     });
   </script>
-</head>
-<body>
-  <div class="container">
-    <div class="quote">
-      <div id="quote-text"></div>
-      <div id="quote-author"></div>
-      <div id="quote-footer"><button id="btn">New Quote</button> <i class="social" id="twitter">T</i></div>   
+  </head>
+  <body>
+    <div class="container">
+      <div class="quote">
+        <div id="quote-text"></div>
+        <div id="quote-author"></div>
+        <div id="quote-footer"><button id="btn">New Quote</button> <i class="social" id="twitter"><span class="fab fa-twitter"></span></i></div>   
+      </div>
     </div>
-    
-  </div>
-</body>
-<footer>by JKozz</footer>
+  </body>
+  <footer>by JKozz</footer>
 </html>
