@@ -68,10 +68,39 @@
 footer{
   position: fixed;
   bottom: 50;
-  right: 40%;
-  width: 300px;
+  right: 50%;
   height: 10px;
   text-align: center;
   font-family: 'Space Mono', monospace;
   
+}
+@media only screen and (max-width: 600px) {
+  .quote{
+    margin:20% auto;
+    width: 350px;
+
+  }
+  #quote-text{
+    margin: 5px;
+    font-size: 17px;
+    text-align: center;
+  }
+  #quote-author{
+    margin: 10px;
+    font-size: 12px;
+    font-style: italic;
+    text-align: right;
+  }
+#quote-footer{
+  height: 20px;
+  background-color: #333333;
+  color: #1DE9B6;
+  margin: 20px auto;
+  text-align: center;
+}
+#btn{
+  width: 20%;
+  height: 30px;
+  font-size: 10px;
+}
 }
